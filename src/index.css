@@ -1,21 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
-  --page-bg: #201014;
-  --surface: #2d171d;
-  --surface-soft: #3b1f27;
-  --surface-strong: #4a2730;
-  --text: #fff4ef;
-  --muted: #d9b8b0;
-  --border: rgba(244, 202, 195, 0.14);
-  --border-strong: rgba(244, 202, 195, 0.28);
-  --accent: #d66b72;
-  --accent-soft: #f0b2a9;
-  --accent-2: #b65a61;
-}
-
-:root[data-theme='light'] {
   color-scheme: light;
   --page-bg: #f8ede7;
   --surface: #fff7f3;
@@ -28,6 +13,21 @@
   --accent: #ab4650;
   --accent-soft: #d7a19a;
   --accent-2: #8e3843;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #201014;
+  --surface: #2d171d;
+  --surface-soft: #3b1f27;
+  --surface-strong: #4a2730;
+  --text: #fff4ef;
+  --muted: #d9b8b0;
+  --border: rgba(244, 202, 195, 0.14);
+  --border-strong: rgba(244, 202, 195, 0.28);
+  --accent: #d66b72;
+  --accent-soft: #f0b2a9;
+  --accent-2: #b65a61;
 }
 
 html {
@@ -93,4 +93,3 @@ a {
   background: color-mix(in srgb, var(--accent) 60%, var(--surface));
   background-clip: content-box;
 }
-@import "tailwindcss";

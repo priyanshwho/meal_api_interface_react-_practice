@@ -34,7 +34,7 @@ const cardVariants = {
 
 const App = () => {
   const { meals, isLoading, isSyncing, error, refetch, totalMeals } = useMealsCatalog()
-  const [theme, setTheme] = useLocalStorageState<'light' | 'dark'>('meals-explorer-theme', 'dark')
+  const [theme, setTheme] = useLocalStorageState<'light' | 'dark'>('meals-explorer-theme', 'light')
   const [favoriteIds, setFavoriteIds] = useLocalStorageState<string[]>('meals-explorer-favorites', [])
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All plates')
@@ -193,7 +193,7 @@ const App = () => {
       </header>
 
       <main className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <section className="grid gap-6 lg:grid-cols-[1.25fr_0.85fr]">
+        <section className="grid gap-6">
           <motion.div
             variants={cardVariants}
             initial="hidden"

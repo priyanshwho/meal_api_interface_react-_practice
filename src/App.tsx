@@ -210,7 +210,7 @@ const App = () => {
                 </span>
 
                 <div className="space-y-4">
-                  <h2 className="max-w-xl text-4xl font-[700] leading-none tracking-[-0.07em] sm:text-5xl lg:text-6xl">
+                  <h2 className="max-w-2xl text-4xl font-[700] leading-none tracking-[-0.07em] sm:text-5xl lg:text-6xl">
                     {heroMeal ? heroMeal.strMeal : 'Meals Explorer'}
                   </h2>
                   <p className="max-w-2xl text-sm leading-7 text-[var(--muted)] sm:text-base">
@@ -247,30 +247,25 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="grid gap-4 rounded-[1.75rem] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_80%,transparent)] p-5 shadow-[0_16px_46px_rgba(98,39,48,0.1)] backdrop-blur-md">
-                <div className="grid grid-cols-2 gap-3">
-                  <StatCard label="Recipes" value={totalMeals} accent="var(--accent)" />
-                  <StatCard label="Favorites" value={favoriteCount} accent="var(--accent-2)" />
-                  <StatCard label="Visible" value={visibleMeals.length} accent="var(--accent-soft)" />
-                  <StatCard label="Mood" value={theme === 'dark' ? 'Noir' : 'Blush'} accent="var(--border-strong)" />
+              <div className="space-y-4 rounded-[1.75rem] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_80%,transparent)] p-5 shadow-[0_16px_46px_rgba(98,39,48,0.1)] backdrop-blur-md">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Featured recipe</p>
+                    <p className="mt-1 text-lg font-[700] tracking-[-0.03em]">{heroMeal?.strMeal ?? 'Select a meal'}</p>
+                  </div>
+                  {heroMeal ? (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMeal(heroMeal)}
+                      className="rounded-full border border-[var(--border)] px-3 py-2 text-xs font-medium transition hover:bg-[var(--surface-strong)]"
+                    >
+                      Open recipe
+                    </button>
+                  ) : null}
                 </div>
 
                 {heroMeal ? (
-                  <div className="space-y-4 rounded-[1.5rem] bg-[linear-gradient(160deg,var(--surface-soft),var(--surface))] p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Featured recipe</p>
-                        <p className="mt-1 text-lg font-[700] tracking-[-0.03em]">{heroMeal.strMeal}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedMeal(heroMeal)}
-                        className="rounded-full border border-[var(--border)] px-3 py-2 text-xs font-medium transition hover:bg-[var(--surface-strong)]"
-                      >
-                        Open recipe
-                      </button>
-                    </div>
-
+                  <>
                     <div className="space-y-2 text-sm text-[var(--muted)]">
                       <p>{getMealDigest(heroMeal)}</p>
                       <div className="flex flex-wrap gap-2 pt-1">
@@ -293,46 +288,15 @@ const App = () => {
                         ))}
                       </ul>
                     </div>
-                  </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <StatCard label="Recipes" value={totalMeals} accent="var(--accent)" />
+                      <StatCard label="Favorites" value={favoriteCount} accent="var(--accent-2)" />
+                      <StatCard label="Visible" value={visibleMeals.length} accent="var(--accent-soft)" />
+                      <StatCard label="Mood" value={theme === 'dark' ? 'Noir' : 'Blush'} accent="var(--border-strong)" />
+                    </div>
+                  </>
                 ) : null}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-4 rounded-[2rem] border border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_74%,transparent)] p-5 shadow-[0_24px_65px_rgba(70,18,28,0.12)] backdrop-blur-xl"
-          >
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-xs uppercase tracking-[0.45em] text-[var(--muted)]">Curated modes</p>
-                <h3 className="mt-1 text-2xl font-[700] tracking-[-0.05em]">favorites and filters</h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedMeal(favorites[0] ?? heroMeal ?? null)}
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-medium transition hover:bg-[var(--surface-strong)]"
-              >
-                <Heart className="h-3.5 w-3.5" />
-                open favorite
-              </button>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <HintCard title="Shimmer loading" copy="Loading uses soft skeleton cards instead of a hard spinner." />
-              <HintCard title="Infinity scroll" copy="A sentinel loads more cards when the bento grid reaches the bottom." />
-              <HintCard title="Share action" copy="Recipe data can be shared or copied from the detail sheet." />
-              <HintCard title="Bookmarks" copy="Favorites persist locally and can be opened from the hero panel." />
-            </div>
-
-            <div className="rounded-[1.5rem] border border-[var(--border)] bg-[linear-gradient(145deg,var(--surface-soft),var(--surface))] p-4">
-              <p className="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Mode summary</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {categories.slice(0, 6).map((item) => (
-                  <Pill key={item} label={item} active={item === category} onClick={() => setCategory(item)} />
-                ))}
               </div>
             </div>
           </motion.div>

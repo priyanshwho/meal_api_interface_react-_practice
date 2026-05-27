@@ -449,18 +449,6 @@ const StatCard = ({ label, value, accent }: StatCardProps) => (
   </div>
 )
 
-type HintCardProps = {
-  title: string
-  copy: string
-}
-
-const HintCard = ({ title, copy }: HintCardProps) => (
-  <div className="rounded-[1.35rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4 shadow-[0_10px_24px_rgba(97,42,51,0.08)] transition hover:-translate-y-0.5 hover:bg-[var(--surface-strong)]">
-    <p className="text-sm font-[700] tracking-[-0.02em]">{title}</p>
-    <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{copy}</p>
-  </div>
-)
-
 type EmptyStateProps = {
   title: string
   copy: string
